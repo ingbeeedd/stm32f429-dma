@@ -1,0 +1,1 @@
+01_no_dma_core_interrupt\startup_stm32f429xx.o: startup_stm32f429xx.s
