@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;08_dma_adc_sram&apos;" deleteContents="false" description="Delete resource &apos;08_dma_adc_sram&apos;" element1="/08_dma_adc_sram" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1599447184616"/>&#x0A;<refactoring comment="Delete 2 resources" deleteContents="false" description="Delete 2 resources" element1="/cortexm4_wfi_test" element2="/STM32F429I-Discovery" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="2" stamp="1599649290183"/>
+</session>
