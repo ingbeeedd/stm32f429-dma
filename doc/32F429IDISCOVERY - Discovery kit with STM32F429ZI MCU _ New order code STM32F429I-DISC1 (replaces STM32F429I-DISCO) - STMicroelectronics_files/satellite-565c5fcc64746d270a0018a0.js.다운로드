@@ -1,0 +1,9 @@
+//all
+var cInsBef=document.querySelectorAll('script[src*="//assets.adobedtm.com/"]');
+	if(cInsBef.length-1>-1){
+		var lDTM=cInsBef[0];
+	}
+	else
+	{
+		var lDTM=document.getElementsByTagName("head")[0];  
+	}

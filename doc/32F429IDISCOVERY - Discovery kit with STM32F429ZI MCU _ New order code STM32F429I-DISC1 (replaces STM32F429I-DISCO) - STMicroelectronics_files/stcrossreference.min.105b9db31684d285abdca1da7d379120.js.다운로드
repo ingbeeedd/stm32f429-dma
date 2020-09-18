@@ -1,0 +1,38 @@
+var stCrossReferenceApp=angular.module("stCrossReferenceApp",["smart-table"]);
+stCrossReferenceApp.controller("crossReferenceController",["$scope","$http","$filter",function(a,c,b){a.form={};
+a.rowCollection=[];
+a.itemsByPage=40;
+a.pageNo=1;
+a.searchfor;
+a.searchXReference=function(g,e,d){$("#loaderDiv").show();
+$CQ(".x-reference_count_JS").text("");
+$CQ(".x-reference_mobile_JS").html($CQ(".x-reference_mobile_JS").attr("myValue"));
+a.items=[];
+a.searchfor=g;
+g=encodeURIComponent(g.trim());
+var f="/bin/st/search-cx/servlets/xreference.json?searchKey="+g+"&saveQuery="+e+"&pageNo="+d;
+c({method:"GET",url:f,async:true,headers:{"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"}}).success(function(h){a.rowCollection=angular.fromJson(h.items);
+a.displayedCollection=[].concat(a.rowCollection);
+if(h.pageNo){a.pageNo=h.pageNo
+}if(a.displayedCollection&&a.displayedCollection.length>1){$(".x-reference").removeClass("disabled");
+$(".x-reference_count_JS").text((a.rowCollection.length)?"("+a.rowCollection.length+")":"");
+$CQ(".x-reference_mobile_JS").html((a.rowCollection.length)?$CQ(".x-reference_mobile_JS").attr("myValue")+" ("+a.rowCollection.length+")":$CQ(".x-reference_mobile_JS").attr("myValue"))
+}else{$(".x-reference").addClass("disabled");
+$(".x-reference_count_JS").text((0)?"("+0+")":"");
+$CQ(".x-reference_mobile_JS").html((0)?$CQ(".x-reference_mobile_JS").attr("myValue")+" ("+0+")":$CQ(".x-reference_mobile_JS").attr("myValue"))
+}$("#loaderDiv").hide();
+$("#overlay").remove()
+}).error(function(){a.items=[];
+$("#loaderDiv").hide();
+$("#overlay").remove()
+})
+}
+}]);
+var transform=function(a){return $.param(a)
+};
+stCrossReferenceApp.filter("getValidUrl",function(){return function(a){if(!(a.indexOf("http")>=0)){a="http://"+a
+}return a
+}
+});
+angular.element(document).ready(function(){angular.bootstrap(document.getElementById("divcrossreference"),["stCrossReferenceApp"])
+});

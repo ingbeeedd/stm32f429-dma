@@ -1,0 +1,19 @@
+$(function(){var b="/save-bookmark";
+var g="product-url";
+function e(i,h){return i.indexOf(h,i.length-h.length)!==-1
+}function d(){var h=window.location.pathname;
+return h&&h.indexOf(b)>-1
+}function a(i,h){$.ajax({url:"/bin/st/save-to-myst",data:"path="+i,async:true,type:"POST",success:function(j){if(j.isError){alert("Error occurred while saving a bookmark")
+}else{if(j.notLoggedIn){if(j.loginPage&&h){if(e(j.loginPage,b)){window.location.href=j.loginPage
+}else{window.location.href=j.loginPage+b
+}}else{alert("Error occurred while saving a bookmark")
+}}else{$("#bookmarkSaved")[0].click()
+}}},failure:function(){alert("Error occurred while saving a bookmark")
+}})
+}if(d()){var f=window.location.pathname;
+a(c(),false)
+}$("a.st-link.js-st-save-to-my-st").click(function(){a(c(),true);
+return false
+});
+function c(){return $("a.st-link.js-st-save-to-my-st").data(g)
+}});

@@ -1,0 +1,27 @@
+$(document).ready(function(){var d="cookie-panel-st-cookies-policy";
+var b="cookie-panel-st-private-policy";
+var e="st_visited";
+var f="st_visited_private_policy";
+var c=function(h,g){$("#"+h+" a.close-cookie-panel").click(function(){a(g);
+a(f);
+var i=$(this).parent().parent();
+if(i.attr("id")==d){i.hide();
+$("#"+b).show();
+c(b,f)
+}else{i.hide()
+}return false
+})
+};
+var a=function(h){var i=new Date();
+i.setMonth(i.getMonth()+13);
+var g="expires="+i.toGMTString();
+document.cookie=h+"=true; "+g+"; path=/"
+};
+if(document.cookie.indexOf(e)<0){$("#"+d).show();
+c(d,e)
+}else{if(document.cookie.indexOf(f)<0){$("#"+b).show();
+a(f);
+$("#"+d+" a.close-cookie-panel").click(function(){var g=$(this).parent().parent().hide();
+return false
+})
+}}});

@@ -41,7 +41,10 @@
 #include "stm32f4xx_hal.h"
 
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdint.h>
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -138,7 +141,7 @@ int main(void)
 		  }
 		  temp_sum = temp_sum / 12.0;
 
-		  float temp = (((temp_sum * (3.3/(2^12)-1)) - 0.76) / 2.5) + 25;
+		  float temp = (((temp_sum * (3.3/(2^12)-1)) - 0.76) / 2.5) + 25.0;
 
 		  // print(temp);
 	  }

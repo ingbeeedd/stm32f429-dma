@@ -1,0 +1,188 @@
++function(d){var b=function(g,f){this.options=f;
+this.$body=d(document.body);
+this.$element=d(g);
+this.$backdrop=this.isShown=null;
+this.scrollbarWidth=0;
+if(this.options.remote){this.$element.find(".modal-content").load(this.options.remote,d.proxy(function(){this.$element.trigger("loaded.bs.modal")
+},this))
+}};
+b.VERSION="3.3.2";
+b.TRANSITION_DURATION=300;
+b.BACKDROP_TRANSITION_DURATION=150;
+b.DEFAULTS={backdrop:true,keyboard:true,show:true};
+b.prototype.toggle=function(f){return this.isShown?this.hide():this.show(f)
+};
+b.prototype.show=function(h){var f=this;
+var g=d.Event("show.bs.modal",{relatedTarget:h});
+this.$element.trigger(g);
+if(this.isShown||g.isDefaultPrevented()){return
+}this.isShown=true;
+this.checkScrollbar();
+this.setScrollbar();
+this.$body.addClass("modal-open");
+this.escape();
+this.resize();
+this.$element.on("click.dismiss.bs.modal",'[data-dismiss="modal"]',d.proxy(this.hide,this));
+this.backdrop(function(){var j=d.support.transition&&f.$element.hasClass("fade");
+if(!f.$element.parent().length){f.$element.appendTo(f.$body)
+}f.$element.show().scrollTop(0);
+if(f.options.backdrop){f.adjustBackdrop()
+}f.adjustDialog();
+if(j){f.$element[0].offsetWidth
+}f.$element.addClass("in").attr("aria-hidden",false);
+f.enforceFocus();
+var i=d.Event("shown.bs.modal",{relatedTarget:h});
+j?f.$element.find(".modal-dialog").one("bsTransitionEnd",function(){f.$element.trigger("focus").trigger(i)
+}).emulateTransitionEnd(b.TRANSITION_DURATION):f.$element.trigger("focus").trigger(i)
+})
+};
+b.prototype.hide=function(f){if(f){f.preventDefault()
+}f=d.Event("hide.bs.modal");
+this.$element.trigger(f);
+if(!this.isShown||f.isDefaultPrevented()){return
+}this.isShown=false;
+this.escape();
+this.resize();
+d(document).off("focusin.bs.modal");
+this.$element.removeClass("in").attr("aria-hidden",true).off("click.dismiss.bs.modal");
+d.support.transition&&this.$element.hasClass("fade")?this.$element.one("bsTransitionEnd",d.proxy(this.hideModal,this)).emulateTransitionEnd(b.TRANSITION_DURATION):this.hideModal()
+};
+b.prototype.enforceFocus=function(){d(document).off("focusin.bs.modal").on("focusin.bs.modal",d.proxy(function(f){if(this.$element[0]!==f.target&&!this.$element.has(f.target).length){this.$element.trigger("focus")
+}},this))
+};
+b.prototype.escape=function(){if(this.isShown&&this.options.keyboard){this.$element.on("keydown.dismiss.bs.modal",d.proxy(function(f){f.which==27&&this.hide()
+},this))
+}else{if(!this.isShown){this.$element.off("keydown.dismiss.bs.modal")
+}}};
+b.prototype.resize=function(){if(this.isShown){d(window).on("resize.bs.modal",d.proxy(this.handleUpdate,this))
+}else{d(window).off("resize.bs.modal")
+}};
+b.prototype.hideModal=function(){var f=this;
+this.$element.hide();
+this.backdrop(function(){f.$body.removeClass("modal-open");
+f.resetAdjustments();
+f.resetScrollbar();
+f.$element.trigger("hidden.bs.modal")
+})
+};
+b.prototype.removeBackdrop=function(){this.$backdrop&&this.$backdrop.remove();
+this.$backdrop=null
+};
+b.prototype.backdrop=function(j){var i=this;
+var g=this.$element.hasClass("fade")?"fade":"";
+if(this.isShown&&this.options.backdrop){var f=d.support.transition&&g;
+this.$backdrop=d('<div class="modal-backdrop '+g+'" />').prependTo(this.$element).on("click.dismiss.bs.modal",d.proxy(function(k){if(k.target!==k.currentTarget){return
+}this.options.backdrop=="static"?this.$element[0].focus.call(this.$element[0]):this.hide.call(this)
+},this));
+if(f){this.$backdrop[0].offsetWidth
+}this.$backdrop.addClass("in");
+if(!j){return
+}f?this.$backdrop.one("bsTransitionEnd",j).emulateTransitionEnd(b.BACKDROP_TRANSITION_DURATION):j()
+}else{if(!this.isShown&&this.$backdrop){this.$backdrop.removeClass("in");
+var h=function(){i.removeBackdrop();
+j&&j()
+};
+d.support.transition&&this.$element.hasClass("fade")?this.$backdrop.one("bsTransitionEnd",h).emulateTransitionEnd(b.BACKDROP_TRANSITION_DURATION):h()
+}else{if(j){j()
+}}}};
+b.prototype.handleUpdate=function(){if(this.options.backdrop){this.adjustBackdrop()
+}this.adjustDialog()
+};
+b.prototype.adjustBackdrop=function(){this.$backdrop.css("height",0).css("height",this.$element[0].scrollHeight)
+};
+b.prototype.adjustDialog=function(){var f=this.$element[0].scrollHeight>document.documentElement.clientHeight;
+this.$element.css({paddingLeft:!this.bodyIsOverflowing&&f?this.scrollbarWidth:"",paddingRight:this.bodyIsOverflowing&&!f?this.scrollbarWidth:""})
+};
+b.prototype.resetAdjustments=function(){this.$element.css({paddingLeft:"",paddingRight:""})
+};
+b.prototype.checkScrollbar=function(){this.bodyIsOverflowing=document.body.scrollHeight>document.documentElement.clientHeight;
+this.scrollbarWidth=this.measureScrollbar()
+};
+b.prototype.setScrollbar=function(){var f=parseInt((this.$body.css("padding-right")||0),10);
+if(this.bodyIsOverflowing){this.$body.css("padding-right",f+this.scrollbarWidth)
+}};
+b.prototype.resetScrollbar=function(){this.$body.css("padding-right","")
+};
+b.prototype.measureScrollbar=function(){var g=document.createElement("div");
+g.className="modal-scrollbar-measure";
+this.$body.append(g);
+var f=g.offsetWidth-g.clientWidth;
+this.$body[0].removeChild(g);
+return f
+};
+function c(f,g){return this.each(function(){var j=d(this);
+var i=j.data("bs.modal");
+var h=d.extend({},b.DEFAULTS,j.data(),typeof f=="object"&&f);
+if(!i){j.data("bs.modal",(i=new b(this,h)))
+}if(typeof f=="string"){i[f](g)
+}else{if(h.show){i.show(g)
+}}})
+}var a=d.fn.modal;
+d.fn.modal=c;
+d.fn.modal.Constructor=b;
+d.fn.modal.noConflict=function(){d.fn.modal=a;
+return this
+};
+d(document).on("click.bs.modal.data-api",'[data-toggle="modal"]',function(j){var i=d(this);
+var g=i.attr("href");
+var f=d(i.attr("data-target")||(g&&g.replace(/.*(?=#[^\s]+$)/,"")));
+var h=f.data("bs.modal")?"toggle":d.extend({remote:!/#/.test(g)&&g},f.data(),i.data());
+if(i.is("a")){j.preventDefault()
+}f.one("show.bs.modal",function(k){if(k.isDefaultPrevented()){return
+}f.one("hidden.bs.modal",function(){i.is(":visible")&&i.trigger("focus")
+})
+});
+c.call(f,h,this)
+})
+}(jQuery);
+(function(f){var b=f.STFED||{};
+var g={get:a,set:c,has:i,remove:d,keys:h};
+b.cookieFactory=g;
+f.STFED=b;
+function a(j){if(!j){return null
+}return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*"+encodeURIComponent(j).replace(/[\-\.\+\*]/g,"\\$&")+"\\s*\\=\\s*([^;]*).*$)|^.*$"),"$1"))||null
+}function c(m,p,l,k,j,n){if(!m||/^(?:expires|max\-age|path|domain|secure)$/i.test(m)){return false
+}var o="";
+if(l){switch(l.constructor){case Number:o=l===Infinity?"; expires=Fri, 31 Dec 9999 23:59:59 GMT":"; max-age="+l;
+break;
+case String:o="; expires="+l;
+break;
+case Date:o="; expires="+l.toUTCString();
+break
+}}document.cookie=encodeURIComponent(m)+"="+encodeURIComponent(p)+o+(j?"; domain="+j:"")+(k?"; path="+k:"")+(n?"; secure":"");
+return true
+}function i(j){if(!j){return false
+}return(new RegExp("(?:^|;\\s*)"+encodeURIComponent(j).replace(/[\-\.\+\*]/g,"\\$&")+"\\s*\\=")).test(document.cookie)
+}function d(l,k,j){if(!i(l)){return false
+}document.cookie=encodeURIComponent(l)+"=; expires=Thu, 01 Jan 1970 00:00:00 GMT"+(j?"; domain="+j:"")+(k?"; path="+k:"");
+return true
+}function h(){var j=document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g,"").split(/\s*(?:\=[^;]*)?;\s*/);
+for(var l=j.length,k=0;
+k<l;
+k++){j[k]=decodeURIComponent(j[k])
+}return j
+}})(window);
+var STFED=window.STFED||{};
+var cookieName="browserWarning",cookieVal="true",cookieExp=null,cookiePath="/",cookieDomain=null,cookieSecure=null;
+var $buoop={required:{e:"16.16299",i:11,f:63,o:54,s:10,c:64,ios:10,samsung:8.2},reminder:0,insecure:false,unsupported:false,onshow:function(a){handleBuModal()
+}};
+function waitForReasonsKeyExistency(c){var b=Date.now();
+var a=setInterval(function(){if(window.$buoop.reasons){if(window.$buoop.reasons.length>0&&!window.$buoop.notified){handleBuModal()
+}clearInterval(a);
+return true
+}if(Date.now()-b>c){clearInterval(a);
+return false
+}},50)
+}function handleBuModal(){if(!STFED.cookieFactory.has("browserWarning")&&isClosed!==undefined){var a=$("#oldBrowserModal");
+a.on("hide.bs.modal",function(){var c=document.getElementById("disableBrowserWarning");
+if(c&&c.checked){cookieExp=Infinity
+}STFED.cookieFactory.set(cookieName,cookieVal,cookieExp,cookiePath,cookieDomain,cookieSecure)
+});
+a.modal();
+var b=$("#continueBrowsing");
+b.click(function(){a.modal("hide")
+})
+}}function $buo_f(){waitForReasonsKeyExistency(20000)
+}try{document.addEventListener("DOMContentLoaded",$buo_f,false)
+}catch(e){window.attachEvent("onload",$buo_f)
+};

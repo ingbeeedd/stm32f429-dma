@@ -1,0 +1,116 @@
+function sliceResults(a,b){if(a.length>b){a=a.slice(0,b)
+}return a
+}var App=angular.module("stSearchHistoryApp",["ngSanitize","ngCookies"]);
+App.controller("searchHistoryController",["$scope","$http","$window","$cookies",function(a,d,c,b){a.form={};
+a.items="";
+a.getSearchHistory=function(e){if(e){var f="/bin/st/search-cx/servlets/searchhistory.json?rand="+new Date().getTime();
+d({method:"GET",url:f,async:true,headers:{"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",Dispatcher:"no-cache","Cache-Control":"max-age=0"}}).success(function(g){a.items=angular.fromJson(g.items)
+}).error(function(){console.log("error")
+})
+}else{angular.forEach(b,function(h,g){if(g=="searchHistory"){var i=angular.fromJson(h);
+a.items=angular.fromJson(i).sort(compare);
+a.$apply()
+}})
+}};
+a.searchHistoryResults=function(g){closePopoverSearch();
+var i=g.indexOf("q")+2;
+var j=g.indexOf("&");
+var h=g.substring(i,j);
+var e=g.indexOf("category")+9;
+var f="";
+if(g.substring(g.length-2)!=='"]'){f=g.substring(e,g.length)
+}else{f=g.substring(e,g.length-2)
+}sendSearchToGA(h);
+analyticsBookmarkHistoryClicked=1;
+changeTab(h,f,1,true)
+}
+}]);
+var AppTop=angular.module("stSearchHistoryAppTop",["ngSanitize","ngCookies"]);
+AppTop.controller("searchHistoryControllerTop",["$scope","$http","$window","$cookies",function(a,d,c,b){a.form={};
+a.items="";
+a.getSearchHistory=function(e){if(e=="true"){var f="/bin/st/search-cx/servlets/searchhistory.json?rand="+new Date().getTime();
+d({method:"GET",url:f,async:true,headers:{"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",Dispatcher:"no-cache","Cache-Control":"max-age=0"}}).success(function(g){a.items=sliceResults(angular.fromJson(g.items),3)
+}).error(function(){console.log("error")
+})
+}else{angular.forEach(b,function(h,g){if(g=="searchHistory"){var i=angular.fromJson(h);
+a.items=sliceResults(angular.fromJson(i).sort(compare),3);
+a.$apply()
+}})
+}};
+a.searchHistoryResults=function(g){closeAutoSuggestionWidget();
+closeSearchWidget();
+var i=g.indexOf("q")+2;
+var j=g.indexOf("&");
+var h=g.substring(i,j);
+var e=g.indexOf("category")+9;
+var f="";
+if(g.substring(g.length-2)!=='"]'){f=g.substring(e,g.length)
+}else{f=g.substring(e,g.length-2)
+}if(typeof(searchPageId)=="undefined"){$(".searchKey_JS").val(h);
+setCategoryFrom(f);
+$("#form-search").submit()
+}else{sendSearchToGA(h);
+analyticsBookmarkHistoryClicked=1;
+changeTab(h,f,1,true)
+}}
+}]);
+var AppTopMobile=angular.module("stSearchHistoryAppTopMobile",["ngSanitize","ngCookies"]);
+AppTopMobile.controller("searchHistoryControllerTopMobile",["$scope","$http","$window","$cookies",function(a,d,c,b){a.form={};
+a.items="";
+a.getSearchHistory=function(e){if(e=="true"){var f="/bin/st/search-cx/servlets/searchhistory.json?rand="+new Date().getTime();
+d({method:"GET",url:f,async:true,headers:{"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",Dispatcher:"no-cache","Cache-Control":"max-age=0"}}).success(function(g){a.items=sliceResults(angular.fromJson(g.items),3)
+}).error(function(){console.log("error")
+})
+}else{angular.forEach(b,function(h,g){if(g=="searchHistory"){var i=angular.fromJson(h);
+a.items=sliceResults(angular.fromJson(i).sort(compare),3);
+a.$apply()
+}})
+}};
+a.searchHistoryResults=function(g){var i=g.indexOf("q")+2;
+var j=g.indexOf("&");
+var h=g.substring(i,j);
+var e=g.indexOf("category")+9;
+var f="products";
+if(g.substring(g.length-2)!=='"]'){f=g.substring(e,g.length)
+}else{f=g.substring(e,g.length-2)
+}$("#categorySearchWidgetMobile").val(f);
+$(".searchKey_JS").val(h);
+$("#form-search-desktop").submit()
+}
+}]);
+var transform=function(a){return $.param(a)
+};
+function compare(d,c){if(d.searchDate<c.searchDate){return 1
+}if(d.searchDate>c.searchDate){return -1
+}return 0
+}App.filter("getHtmlFilterFromHistory",["$sce",function(a){return function(c){var f=c.indexOf("q=")+2;
+var e=c.indexOf("&category=");
+var b=c.substring(f,e);
+var d=c.substring(e+10);
+if("]"===d.substring(d.length-1)){d=d.substring(0,d.length-2)
+}if(d==="keywords"){d="all site"
+}return a.trustAsHtml(b.replace(/\\"/g,'"')+"<span style='color: #8f8f8f'>&nbsp;["+d+"]</span>")
+}
+}]);
+AppTop.filter("getHtmlFilterFromHistory",["$sce",function(a){return function(c){var f=c.indexOf("q=")+2;
+var e=c.indexOf("&category=");
+var b=c.substring(f,e);
+var d=c.substring(e+10);
+if("]"===d.substring(d.length-1)){d=d.substring(0,d.length-2)
+}if(d==="keywords"){d="all site"
+}return a.trustAsHtml(b.replace(/\\"/g,'"')+'<span class="st-text-color--grey">&nbsp;['+d+"]</span>")
+}
+}]);
+AppTopMobile.filter("getHtmlFilterFromHistory",["$sce",function(a){return function(c){var f=c.indexOf("q=")+2;
+var e=c.indexOf("&category=");
+var b=c.substring(f,e);
+var d=c.substring(e+10);
+if("]"===d.substring(d.length-1)){d=d.substring(0,d.length-2)
+}if(d==="keywords"){d="all site"
+}return a.trustAsHtml(b.replace(/\\"/g,'"')+'<span class="st-text-color--grey">&nbsp;['+d+"]</span>")
+}
+}]);
+angular.element(document).ready(function(){angular.bootstrap(document.getElementById("divhistory"),["stSearchHistoryApp"]);
+angular.bootstrap(document.getElementById("searchfilter"),["stSearchHistoryAppTop"]);
+angular.bootstrap(document.getElementById("searchfilterMobile"),["stSearchHistoryAppTopMobile"])
+});

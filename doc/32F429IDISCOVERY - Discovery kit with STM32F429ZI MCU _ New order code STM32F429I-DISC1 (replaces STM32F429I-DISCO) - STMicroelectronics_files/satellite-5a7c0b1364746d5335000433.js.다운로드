@@ -1,0 +1,11 @@
+var callbackscriptdmdbase = document.createElement("script");
+callbackscriptdmdbase.onload = function(){
+	var apiCalldmdbase = document.createElement("script"); 
+	apiCalldmdbase.type = "text/javascript"; 
+	apiCalldmdbase.src = "//api.demandbase.com/api/v2/ip.json?key=74e3412e20e099cff61a26fcebf40010&callback=Dmdbase_CDC.callback"; 
+	document.head.appendChild(apiCalldmdbase); 
+}
+	
+callbackscriptdmdbase.type = "text/javascript"; 
+callbackscriptdmdbase.src = "//scripts.demandbase.com/adobeanalytics/f7b6166e.min.js"; 
+document.head.appendChild(callbackscriptdmdbase); 

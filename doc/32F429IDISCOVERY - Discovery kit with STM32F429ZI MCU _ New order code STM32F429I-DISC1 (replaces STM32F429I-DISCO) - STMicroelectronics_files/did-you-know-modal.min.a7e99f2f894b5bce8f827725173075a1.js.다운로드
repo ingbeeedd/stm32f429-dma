@@ -1,0 +1,238 @@
+var DidYouKnow=function(){var a=this;
+this.isInitializing=false;
+this.dontShowAnymoreExpiresIn=30;
+this.showModal=function(){if(a.isInitializing){return
+}a.isInitializing=true;
+a.modal=$(".did-you-know");
+if(a.modal.length&&a.popupCanBeShown()){a.waitUntilScreenIsDesktop().then(function(){a.isInitializing=false;
+if(!a.isInitialized){a.subscriptionSuccessful=false;
+a.assignElements();
+a.initListeners();
+a.isInitialized=true
+}a.goToSubStep(0,0);
+a.modal.fadeIn()
+})
+}else{a.isInitializing=false
+}};
+this.waitUntilScreenIsDesktop=function(){var b=$.Deferred();
+var c=function(){b.resolve();
+enquire.unregister(STFED.mediaQueries.largeMin,c)
+};
+enquire.register(STFED.mediaQueries.largeMin,c);
+return b.promise()
+};
+this.hideModal=function(){this.modal.fadeOut()
+};
+this.assignElements=function(){this.modalHeader=$(".did-you-know--header");
+this.closeModal=$(".btn-close-panel");
+this.serverError=this.modal.find(".server-error small");
+this.dontShowCheckbox=$("#dont-show-did-you-know");
+this.steps=$(".did-you-know--content");
+this.didYouKnowTermsForm=$("#did-you-know-step1");
+this.receiveUpdatesBtn=$("#receive-updates");
+this.termsCheckbox=$("#accept-terms");
+this.submitSubscriptionForm=$("#did-you-know-step2");
+this.didYouKnowEmail=$("#did-you-know-email");
+this.didYouKnowEmailHidden=$("#did-you-know-email-hidden");
+this.goBackToEmailEdit=$("#go-back-to-email-edit");
+this.validateCodeForm=$("#did-you-know-validate-code");
+this.submitDidntGetCodeBtn=$(".did-you-know--didnt-receive-code");
+this.codeInputs=this.validateCodeForm.find('input[type="number"]');
+this.codeInputsGroup=this.validateCodeForm.find(".code-group");
+this.didntGetCodeForm=$("#did-you-know--didnt-receive-code-form");
+this.termsCheckboxRepeat=this.didntGetCodeForm.find('[name="termOfUse"]');
+this.didYouKnowEmailRepeat=$("#did-you-know-email-repeat");
+this.didYouKnowEmailNoEdit=$("#did-you-know-email-no-edit");
+this.didYouKnowEmailNoEditNoCode=$("#did-you-know-email-no-edit-without-code")
+};
+this.popupCanBeShown=function(){return !this.getCookie("dontShowAnymore")
+};
+this.initListeners=function(){var b=new RegExp(/\d+/);
+this.modal.find("form").on("submit",function(c){c.preventDefault()
+});
+this.didYouKnowTermsForm.on("valid",function(){a.receiveUpdatesBtn.removeClass("disabled").removeAttr("disabled");
+a.goToSubStep(1,1)
+}).on("invalid",function(){a.receiveUpdatesBtn.addClass("disabled").attr("disabled","disabled")
+});
+a.termsCheckbox.on("change",function(){if($(this).prop("checked")){a.receiveUpdatesBtn.removeClass("disabled").removeAttr("disabled")
+}});
+this.submitSubscriptionForm.on("valid",function(){a.toggleSubmitButton(a.submitSubscriptionForm,true);
+a.submit(a.submitSubscriptionForm).then(function(c){if(c&&c instanceof Error){return c
+}a.syncEmails();
+a.goToSubStep(1,2)
+}).always(function(c){if(c&&c instanceof Error){return c
+}a.syncEmails();
+a.goToSubStep(1,2)
+})
+}).on("invalid",function(){a.toggleSubmitButton(a.submitSubscriptionForm)
+});
+this.didYouKnowEmail.on("valid.zf.abide",function(){$(this).closest(".has-backend-error").toggleClass("has-backend-error",false);
+a.toggleSubmitButton(a.submitSubscriptionForm,true)
+}).on("invalid.zf.abide",function(){$(this).closest(".has-backend-error").toggleClass("has-backend-error",false);
+a.toggleSubmitButton(a.submitSubscriptionForm)
+});
+this.goBackToEmailEdit.on("click",function(c){c.preventDefault();
+a.clearCode();
+a.resetEnteredCodeValidation();
+a.toggleBackendError();
+a.goToSubStep(1,1)
+});
+this.codeInputs.on("keydown",function(f){var d=$(this);
+var c=f.keyCode;
+if(c==8||c==9||c==16||c==17){return
+}setTimeout(function(){if((c>=48&&c<=57)||(c>=96&&c<=105)){d.val(String.fromCharCode(96<=c?c-48:c))
+}var g=d.val();
+if(b.test(g)){var e=d.index();
+if(e<3){a.codeInputs.eq(++e).focus()
+}else{a.codeInputs.blur()
+}a.enabledCodeSubmit(d)
+}else{d.val("")
+}})
+});
+this.codeInputs.on("paste",function(){var c=$(this);
+setTimeout(function(){var d=c.val()?String(c.val()):"";
+if(b.test(d)){if(d.length>3){a.codeInputs.each(function(e,f){$(f).val(d.charAt(e))
+})
+}else{c.val(d.charAt(0))
+}a.enabledCodeSubmit(c)
+}else{c.val("")
+}})
+});
+this.validateCodeForm.on("submit",function(c){a.toggleBackendError();
+a.resetEnteredCodeValidation();
+if(a.validateEnteredCode()){a.submit(a.validateCodeForm).then(function(d){if(d&&d instanceof Error){return d
+}a.subscriptionSuccessful=true;
+a.setDontShowAnymoreCookie();
+a.goToSubStep(3,3);
+$("#reuse-message").show()
+},function(){a.clearCode()
+}).always(function(d){if(d&&d instanceof Error){return d
+}a.goToSubStep(3,3);
+$("#reuse-message").show()
+})
+}else{a.toggleSubmitButton(a.validateCodeForm)
+}});
+this.submitDidntGetCodeBtn.on("click",function(c){c.preventDefault();
+a.goToSubStep(2,4)
+});
+this.didntGetCodeForm.on("valid",function(){a.toggleSubmitButton(a.didntGetCodeForm,true);
+a.submit(a.didntGetCodeForm).then(function(c){if(c&&c instanceof Error){return c
+}a.setDontShowAnymoreCookie();
+a.subscriptionSuccessful=true;
+a.goToSubStep(3,5);
+$("#reuse-message").hide()
+}).fail(function(c){if(c&&c instanceof Error){return c
+}}).always(function(c){if(c&&c instanceof Error){return
+}a.setDontShowAnymoreCookie();
+a.goToSubStep(3,5);
+$("#reuse-message").hide()
+})
+}).on("invalid",function(){a.toggleSubmitButton(a.didntGetCodeForm)
+});
+this.termsCheckboxRepeat.on("change",function(){if($(this).prop("checked")){a.toggleSubmitButton(a.didntGetCodeForm,true)
+}});
+this.closeModal.on("click",function(c){c.preventDefault();
+a.hideModal();
+a.onModalClose()
+});
+a.dontShowCheckbox.on("change",function(){a.receiveUpdatesBtn.prop("disabled",this.checked)
+})
+};
+this.submit=function(c){var b=c.attr("action");
+var d=c.serialize();
+this.toggleSubmitButton(c);
+return $.ajax({type:"POST",url:b,data:d,dataType:"json"}).then(function(f){if(f){var e=null;
+if(f.errorAC!==undefined){a.toggleServerError();
+a.toggleBackendError(true,window.didYouKnowModalMessages.generalServerError);
+return new Error(window.didYouKnowModalMessages.generalServerError)
+}else{if(f.invalidCode!==undefined){a.toggleServerError();
+a.toggleBackendError(true,window.didYouKnowModalMessages.invalidCodeError);
+return new Error(window.didYouKnowModalMessages.invalidCodeError)
+}}}a.toggleBackendError();
+a.toggleServerError()
+}).fail(function(f){a.toggleServerError(true,f)
+}).always(function(){a.toggleSubmitButton(c,true)
+})
+};
+this.clearCode=function(){var b=this;
+this.codeInputs.each(function(){$(this).val("");
+b.validateEnteredCode()
+})
+};
+this.toggleBackendError=function(b,c){this.currentFormContainer.toggleClass("has-backend-error",b);
+if(b){this.currentFormContainer.find(".backend-error").html(c);
+this.currentFormContainer.find(".backend-error").show()
+}else{this.steps.find(".backend-error").html("");
+this.steps.find(".backend-error").hide()
+}};
+this.toggleServerError=function(b,c){if(b){var d=c&&c.message?c.message:"";
+this.serverError.addClass("shown").html(d)
+}else{this.serverError.removeClass("shown").html("")
+}};
+this.syncEmails=function(){var b=this.didYouKnowEmail.val();
+this.didYouKnowEmailHidden.val(b);
+this.didYouKnowEmailRepeat.val(b);
+this.didYouKnowEmailNoEdit.text(b);
+this.didYouKnowEmailNoEditNoCode.text(b)
+};
+this.toggleSubmitButton=function(d,c){var b=$('[type="submit"]',d);
+if(c){b.removeClass("disabled").removeAttr("disabled")
+}else{b.addClass("disabled").attr("disabled","disabled")
+}};
+this.goToStep=function(b){return(this.currentFormContainer=this.steps.removeClass("shown").filter(function(){return $(this).hasClass("step-"+b)
+}).addClass("shown"))
+};
+this.goToSubStep=function(c,b){this.steps.add(this.modalHeader).find('[class^="substep-"]').removeClass("shown");
+var d=this.goToStep(c);
+this.currentFormContainer=d.add(this.modalHeader).find(".substep-"+b).addClass("shown")
+};
+this.enabledCodeSubmit=function(b){b.removeClass("error").closest(".code-group").removeClass("invalid");
+a.toggleSubmitButton(a.validateCodeForm,true)
+};
+this.validateEnteredCode=function(){var c="";
+var b=false;
+a.codeInputs.each(function(){if($(this).val()){c+=$(this).val()
+}else{b=true;
+a.codeInputsGroup.addClass("invalid");
+$(this).addClass("error")
+}});
+return !b
+};
+this.resetEnteredCodeValidation=function(){a.codeInputsGroup.toggleClass("invalid",false);
+a.codeInputs.each(function(){$(this).toggleClass("error",false)
+})
+};
+this.setCookie=function(e,f,d){if(d.expires&&d.expires.toUTCString){d.expires=d.expires.toUTCString()
+}var b=encodeURIComponent(e)+"="+encodeURIComponent(f);
+for(var c in d){b+="; "+c;
+var g=d[c];
+if(g!==true){b+="="+g
+}}document.cookie=b
+};
+this.getCookie=function(c){var b=document.cookie.match("(^|;) ?"+c+"=([^;]*)(;|$)");
+return b?b[2]:null
+};
+this.setDontShowAnymoreCookie=function(){var c=a.dontShowCheckbox.prop("checked");
+var b={};
+b.path="/";
+if(c){b.expires=new Date(Date.now()+1000*86400*365*10)
+}a.setCookie("dontShowAnymore","1",b)
+};
+this.onModalClose=function(){a.setDontShowAnymoreCookie()
+}
+};
+window.STFED=window.STFED||{};
+window.STFED.didYouKnowModal=new DidYouKnow();
+if(typeof window.STFED.ipAddress==="undefined"||window.STFED.ipAddress.length===0){$.ajax({url:"//api.ipify.org?format=json",type:"GET",async:false,success:function(a){if(a&&a.ip){window.STFED.ipAddress=a.ip
+}if(typeof window.STFED.ipGeolocatedCountryCode==="undefined"||window.STFED.ipGeolocatedCountryCode.length===0){$.ajax({url:"/bin/st/geolocation/ip/country?code=true",type:"POST",data:{clientIP:window.STFED.ipAddress},async:false,success:function(b){if(b===null||b===""){return
+}window.STFED.ipGeolocatedCountryCode=b;
+$("input[name='didyouknow.countryCode']").attr("value",window.STFED.ipGeolocatedCountryCode)
+}})
+}}})
+}else{if(typeof window.STFED.ipGeolocatedCountryCode==="undefined"||window.STFED.ipGeolocatedCountryCode.length===0){$.ajax({url:"/bin/st/geolocation/ip/country?code=true",type:"POST",data:{clientIP:window.STFED.ipAddress},async:false,success:function(a){if(a===null||a===""){return
+}window.STFED.ipGeolocatedCountryCode=a;
+$("input[name='didyouknow.countryCode']").attr("value",window.STFED.ipGeolocatedCountryCode)
+}})
+}else{$("input[name='didyouknow.countryCode']").attr("value",window.STFED.ipGeolocatedCountryCode)
+}}$(document).on("click",".js-show-did-you-know-modal",function(a){window.STFED.didYouKnowModal.showModal()
+});

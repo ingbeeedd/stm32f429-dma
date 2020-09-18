@@ -1,0 +1,365 @@
+function activateStarBookmarks(){if(isSearchUserLoggedIn=="true"){$CQ(".js-st-toggle-star-search").find("use").attr("xlink:href","#icon-bookmark-active")
+}}function inactivateStarBookmarks(){$CQ(".js-st-toggle-star-search").find("use").attr("xlink:href","#icon-bookmark")
+}var stopEventBookmarksTwice=0;
+function bindBookMarksAction(){var b="st-popover--active";
+var a="st-popover__wrapper--right";
+getSearchBookmarks();
+if(stopEventBookmarksTwice){return false
+}$(document).on("click",".js-st-popover-search-bookmarks",function(f){stopEventBookmarksTwice=1;
+f.preventDefault();
+var r=$(this);
+var k=r.closest(".st-popover");
+var m=k.closest(".js-st-popover-close");
+if(k.hasClass(b)){k.removeClass(b)
+}else{if(r.data("show-results")!==1&&r.parents().hasClass("st-search-results-nav")){var e=k.children(".st-popover__wrapper");
+e.find(".st-popover__title").text(r.data("login-message-header"));
+e.find(".st-popover__content").html('<p class="st-font-size--xs">'+r.data("login-message-content")+"</div>");
+e.find(".st-popover__footer").hide()
+}if(!(r.data("show-results")==1&&r.hasClass("js-st-toggle-star"))){$(".st-popover").removeClass(b);
+var n="js-st-table--zindex";
+$(".st-table--search").removeClass(n);
+k.closest(".st-table--search").addClass(n);
+k.addClass(b)
+}}var e=$(this).parent().find(".st-popover__wrapper");
+var q=parseFloat(e.css("padding-top"));
+var o=parseFloat(e.css("padding-bottom"));
+var h=parseFloat(e.css("border-top-width"));
+var l=parseFloat(e.css("border-bottom-width"));
+var p=q+o;
+var g=h+l;
+var d=$("> *",e);
+var i=p+g;
+d.each(function(){if($(this).css("position")!="absolute"){var s=$(this).outerHeight(true);
+i+=s
+}});
+e.css("height",i);
+var j=r.offset().left;
+if(e.css("position")=="fixed"){e.css("top",k.offset().top-$(window).scrollTop()+20);
+e.css("left",j)
+}if(parseInt(window.innerWidth)-j<=180){e.css("left","auto");
+e.css("right",0);
+if(e.children(".arrow").length>0&&parseInt(window.innerWidth)>640){e.addClass(a)
+}}scrollTop=$(window).scrollTop()
+});
+$(window).on("resize",function(){if(parseInt(window.innerWidth)<=1024){$(".js-st-popover-search-bookmarks").each(function(d,g){var f=$(this);
+var e=f.offset().left;
+if(parseInt(window.innerWidth)-e<=180){f.css("left","auto");
+f.css("right",0)
+}})
+}});
+function c(){$(".st-popover").each(function(){$(this).removeClass(b)
+});
+$(".st-table--sample-buy").removeAttr("style")
+}$(window).scroll(function(){if(parseInt(window.innerWidth)<=1024){c()
+}});
+$(".st-table").scroll(function(){if(parseInt(window.innerWidth)<=1024){c()
+}});
+$(".js-st-popover-close").on("click",function(d){c()
+});
+$("body").on("click",function(d){c()
+});
+$(".st-popover__wrapper").on("click",function(d){d.stopPropagation()
+})
+}var bookmarksController=angular.module("bookmarksController",["ngSanitize"]);
+bookmarksController.controller("BookmarksCtrl",["$scope","$http","DeleteBookmark","AddBookmark",function(a,d,c,b){a.bookmarks=[];
+a.message=null;
+a.getBookmarks=function(){var e="/bin/st/search-cx/bookmarks?rand="+new Date().getTime();
+d({method:"GET",url:e,async:true}).success(function(f){a.bookmarks=f
+})
+};
+a.updateMessage=function(){if(a.message){a.$apply(function(){a.message=null
+})
+}};
+a.deleteBookmark=function(e){var f={};
+var g=c.getData(e);
+g.then(function(h){a.bookmarks=h;
+$("#divbookmarks .st-message-box--error").removeClass("active")
+})
+};
+a.addBookmark=function(){activateStarBookmarks();
+var g={};
+var f=document.getElementById("searchKey").value;
+if(f==null||f===""){a.message="Search value is empty"
+}else{var i=document.getElementById("searchCategories").value;
+var e="q="+f+"&c="+i;
+var h=b.getData(e);
+h.then(function(j){var m=j.indexOf("limit reached");
+var l=j.indexOf("already exists");
+if(m>0||l>0){a.message=j;
+$("#divbookmarks .st-message-box--error").addClass("active");
+setTimeout(function(){$("#divbookmarks .st-message-box--error").removeClass("active")
+},2500)
+}else{a.message=null;
+a.bookmarks=j
+}})
+}};
+a.searchBookmarkResults=function(g){$("#bookmark").modal("hide");
+closePopoverSearch();
+var i=g.indexOf("q=")+2;
+var j=g.indexOf("&c=");
+var h=g.substring(i,j);
+var e=g.indexOf("&c=")+3;
+var f=g.substring(e);
+$("#searchCategories").val(f);
+$("#searchKey").val(h);
+analyticsBookmarkHistoryClicked=1;
+changeTab(h,f,1,true)
+}
+}]);
+var bookmarksControllerMobile=angular.module("bookmarksControllerMobile",["ngSanitize"]);
+bookmarksControllerMobile.controller("BookmarksCtrlMobile",["$scope","$http","DeleteBookmark","AddBookmark",function(a,d,c,b){a.bookmarks=[];
+a.message=null;
+a.getBookmarks=function(){var e="/bin/st/search-cx/bookmarks?rand="+new Date().getTime();
+d({method:"GET",url:e,async:true}).success(function(f){a.bookmarks=f
+})
+};
+a.updateMessage=function(){if(a.message){a.$apply(function(){a.message=null
+})
+}};
+a.deleteBookmark=function(e){var f={};
+var g=c.getData(e);
+g.then(function(h){a.bookmarks=h;
+$("#divbookmarksMobile .st-message-box--error").removeClass("active")
+})
+};
+a.addBookmark=function(){activateStarBookmarks();
+var g={};
+var f=document.getElementById("searchKey").value;
+if(f==null||f===""){a.message="Search value is empty"
+}else{var i=document.getElementById("searchCategories").value;
+var e="q="+f+"&c="+i;
+var h=b.getData(e);
+h.then(function(j){var m=j.indexOf("limit reached");
+var l=j.indexOf("already exists");
+if(m>0||l>0){a.message=j;
+$("#divbookmarksMobile .st-message-box--error").addClass("active");
+setTimeout(function(){$("#divbookmarksMobile .st-message-box--error").removeClass("active")
+},2500)
+}else{a.message=null;
+a.bookmarks=j
+}})
+}};
+a.searchBookmarkResults=function(g){$("#bookmark").modal("hide");
+var i=g.indexOf("q=")+2;
+var j=g.indexOf("&c=");
+var h=g.substring(i,j);
+var e=g.indexOf("&c=")+3;
+var f=g.substring(e);
+$("#searchCategories").val(f);
+$("#searchKey").val(h);
+analyticsBookmarkHistoryClicked=1;
+changeTab(h,f,1,true)
+}
+}]);
+"use strict";
+var bookmarksApp=angular.module("bookmarksApp",["bookmarksController","bookmarksServices"]);
+bookmarksApp.filter("getBookmarkName",["$sce",function(a){return function(d){var h=d.indexOf("q=")+2;
+var g=d.indexOf("&");
+var c=d.substring(h,g);
+var f=d.indexOf("c=")+2;
+var b=d.length;
+var e=d.substring(f,b);
+if(e==="keywords"){e="all site"
+}return a.trustAsHtml(c.replace(/\\"/g,'"')+'<span class="st-text-color--grey">&nbsp;['+e+"]</span>")
+}
+}]);
+var bookmarksAppMobile=angular.module("bookmarksAppMobile",["bookmarksControllerMobile","bookmarksServicesMobile"]);
+bookmarksAppMobile.filter("getBookmarkName",["$sce",function(a){return function(d){var h=d.indexOf("q=")+2;
+var g=d.indexOf("&");
+var c=d.substring(h,g);
+var f=d.indexOf("c=")+2;
+var b=d.length;
+var e=d.substring(f,b);
+if(e==="keywords"){e="all site"
+}return a.trustAsHtml(c.replace(/\\"/g,'"')+'<span class="st-text-color--grey">&nbsp;['+e+"]</span>")
+}
+}]);
+angular.element(document).ready(function(){angular.bootstrap(document.getElementById("divbookmarks"),["bookmarksApp"]);
+angular.bootstrap(document.getElementById("divbookmarksMobile"),["bookmarksAppMobile"])
+});
+var bookmarksServices=angular.module("bookmarksServices",["ngResource"]);
+bookmarksServices.factory("DeleteBookmark",["$http","$q",function(c,b){var a=function(e){var d=b.defer();
+var e="/bin/st/search-cx/bookmarks?key="+e+"&a=del&rand="+new Date().getTime();
+c({method:"GET",url:e,async:true,headers:{Dispatcher:"no-cache","Cache-Control":"max-age=0"}}).success(function(f){d.resolve(f)
+});
+return d.promise
+};
+return{getData:a}
+}]);
+bookmarksServices.factory("AddBookmark",["$http","$q",function(c,b){var a=function(e){var d=b.defer();
+var e="/bin/st/search-cx/bookmarks?"+e+"&a=add&rand="+new Date().getTime();
+c({method:"GET",url:e,async:true,headers:{Dispatcher:"no-cache","Cache-Control":"max-age=0"}}).success(function(f){d.resolve(f)
+});
+return d.promise
+};
+return{getData:a}
+}]);
+var bookmarksServicesMobile=angular.module("bookmarksServicesMobile",["ngResource"]);
+bookmarksServicesMobile.factory("DeleteBookmark",["$http","$q",function(c,b){var a=function(e){var d=b.defer();
+var e="/bin/st/search-cx/bookmarks?key="+e+"&a=del&rand="+new Date().getTime();
+c({method:"GET",url:e,async:true,headers:{Dispatcher:"no-cache","Cache-Control":"max-age=0"}}).success(function(f){d.resolve(f)
+});
+return d.promise
+};
+return{getData:a}
+}]);
+bookmarksServicesMobile.factory("AddBookmark",["$http","$q",function(c,b){var a=function(e){var d=b.defer();
+var e="/bin/st/search-cx/bookmarks?"+e+"&a=add&rand="+new Date().getTime();
+c({method:"GET",url:e,async:true,headers:{Dispatcher:"no-cache","Cache-Control":"max-age=0"}}).success(function(f){d.resolve(f)
+});
+return d.promise
+};
+return{getData:a}
+}]);
+function sliceResultsBookmarks(a,b){if(a.length>b){a=a.slice(0,b)
+}return a
+}var bookmarksControllerTop=angular.module("bookmarksControllerTop",["ngSanitize"]);
+bookmarksControllerTop.controller("BookmarksCtrlTop",["$scope","$http","DeleteBookmark","AddBookmark",function(a,d,c,b){a.bookmarks=[];
+a.message=null;
+a.getBookmarks=function(){var e="/bin/st/search-cx/bookmarks?rand="+new Date().getTime();
+d({method:"GET",url:e,async:true}).success(function(f){a.bookmarks=sliceResultsBookmarks(f,3)
+})
+};
+a.updateMessage=function(){if(a.message){a.$apply(function(){a.message=null
+})
+}};
+a.deleteBookmark=function(e){var f={};
+var g=c.getData(e);
+g.then(function(h){a.bookmarks=h;
+$("#divbookmarks .st-message-box--error").removeClass("active")
+})
+};
+a.addBookmark=function(){var g={};
+var f=document.getElementById("searchKey").value;
+if(f==null||f===""){a.message="Search value is empty"
+}else{var i=document.getElementById("searchCategories").value;
+var e="q="+f+"&c="+i;
+var h=b.getData(e);
+h.then(function(j){var m=j.indexOf("limit reached");
+var l=j.indexOf("already exists");
+if(m>0||l>0){a.message=j;
+$("#divbookmarks .st-message-box--error").addClass("active");
+setTimeout(function(){$("#divbookmarks .st-message-box--error").removeClass("active")
+},2500)
+}else{a.message=null;
+a.bookmarks=j
+}})
+}};
+a.searchBookmarkResults=function(g){$("#bookmark").modal("hide");
+closeSearchWidget();
+var i=g.indexOf("q=")+2;
+var j=g.indexOf("&c=");
+var h=g.substring(i,j);
+var e=g.indexOf("&c=")+3;
+var f=g.substring(e);
+$("#searchCategories").val(f);
+$("#searchKey").val(h);
+if(typeof(searchPageId)=="undefined"){$(".searchKey_JS").val(h);
+setCategoryFrom(f);
+$("#form-search").submit()
+}else{analyticsBookmarkHistoryClicked=1;
+changeTab(h,f,1,true)
+}}
+}]);
+var bookmarksControllerTopMobile=angular.module("bookmarksControllerTopMobile",["ngSanitize"]);
+bookmarksControllerTopMobile.controller("BookmarksCtrlTopMobile",["$scope","$http","DeleteBookmark","AddBookmark",function(a,d,c,b){a.bookmarks=[];
+a.message=null;
+a.getBookmarks=function(){var e="/bin/st/search-cx/bookmarks?rand="+new Date().getTime();
+d({method:"GET",url:e,async:true}).success(function(f){a.bookmarks=sliceResultsBookmarks(f,3)
+})
+};
+a.updateMessage=function(){if(a.message){a.$apply(function(){a.message=null
+})
+}};
+a.deleteBookmark=function(e){var f={};
+var g=c.getData(e);
+g.then(function(h){a.bookmarks=h;
+$("#divbookmarks .st-message-box--error").removeClass("active")
+})
+};
+a.addBookmark=function(){var g={};
+var f=document.getElementById("searchKey").value;
+if(f==null||f===""){a.message="Search value is empty"
+}else{var i=document.getElementById("searchCategories").value;
+var e="q="+f+"&c="+i;
+var h=b.getData(e);
+h.then(function(j){var m=j.indexOf("limit reached");
+var l=j.indexOf("already exists");
+if(m>0||l>0){a.message=j;
+$("#divbookmarks .st-message-box--error").addClass("active");
+setTimeout(function(){$("#divbookmarks .st-message-box--error").removeClass("active")
+},2500)
+}else{a.message=null;
+a.bookmarks=j
+}})
+}};
+a.searchBookmarkResults=function(g){var i=g.indexOf("q=")+2;
+var j=g.indexOf("&c=");
+var h=g.substring(i,j);
+var e=g.indexOf("&c=")+3;
+var f=g.substring(e);
+$("#categorySearchWidgetMobile").val(f);
+$(".searchKey_JS").val(h);
+$("#form-search-desktop").submit()
+}
+}]);
+"use strict";
+var bookmarksAppTop=angular.module("bookmarksAppTop",["bookmarksControllerTop","bookmarksServicesTop"]);
+bookmarksAppTop.filter("getBookmarkName",["$sce",function(a){return function(d){var h=d.indexOf("q=")+2;
+var g=d.indexOf("&");
+var c=d.substring(h,g);
+var f=d.indexOf("c=")+2;
+var b=d.length;
+var e=d.substring(f,b);
+if(e==="keywords"){e="all site"
+}return a.trustAsHtml(c.replace(/\\"/g,'"')+'<span class="st-text-color--grey">&nbsp;['+e+"]</span>")
+}
+}]);
+var bookmarksAppTopMobile=angular.module("bookmarksAppTopMobile",["bookmarksControllerTopMobile","bookmarksServicesTopMobile"]);
+bookmarksAppTopMobile.filter("getBookmarkName",["$sce",function(a){return function(d){var h=d.indexOf("q=")+2;
+var g=d.indexOf("&");
+var c=d.substring(h,g);
+var f=d.indexOf("c=")+2;
+var b=d.length;
+var e=d.substring(f,b);
+if(e==="keywords"){e="all site"
+}return a.trustAsHtml(c.replace(/\\"/g,'"')+'<span class="st-text-color--grey">&nbsp;['+e+"]</span>")
+}
+}]);
+angular.element(document).ready(function(){angular.bootstrap(document.getElementById("divbookmarksTop"),["bookmarksAppTop"]);
+angular.bootstrap(document.getElementById("divbookmarksTopMobile"),["bookmarksAppTopMobile"])
+});
+var bookmarksServicesTop=angular.module("bookmarksServicesTop",["ngResource"]);
+bookmarksServicesTop.factory("DeleteBookmark",["$http","$q",function(c,b){var a=function(e){var d=b.defer();
+var e="/bin/st/search-cx/bookmarks?key="+e+"&a=del&rand="+new Date().getTime();
+c({method:"GET",url:e,async:true,headers:{Dispatcher:"no-cache","Cache-Control":"max-age=0"}}).success(function(f){d.resolve(f)
+});
+return d.promise
+};
+return{getData:a}
+}]);
+bookmarksServicesTop.factory("AddBookmark",["$http","$q",function(c,b){var a=function(e){var d=b.defer();
+var e="/bin/st/search-cx/bookmarks?"+e+"&a=add&rand="+new Date().getTime();
+c({method:"GET",url:e,async:true,headers:{Dispatcher:"no-cache","Cache-Control":"max-age=0"}}).success(function(f){d.resolve(f)
+});
+return d.promise
+};
+return{getData:a}
+}]);
+var bookmarksServicesTopMobile=angular.module("bookmarksServicesTopMobile",["ngResource"]);
+bookmarksServicesTopMobile.factory("DeleteBookmark",["$http","$q",function(c,b){var a=function(e){var d=b.defer();
+var e="/bin/st/search-cx/bookmarks?key="+e+"&a=del&rand="+new Date().getTime();
+c({method:"GET",url:e,async:true,headers:{Dispatcher:"no-cache","Cache-Control":"max-age=0"}}).success(function(f){d.resolve(f)
+});
+return d.promise
+};
+return{getData:a}
+}]);
+bookmarksServicesTopMobile.factory("AddBookmark",["$http","$q",function(c,b){var a=function(e){var d=b.defer();
+var e="/bin/st/search-cx/bookmarks?"+e+"&a=add&rand="+new Date().getTime();
+c({method:"GET",url:e,async:true,headers:{Dispatcher:"no-cache","Cache-Control":"max-age=0"}}).success(function(f){d.resolve(f)
+});
+return d.promise
+};
+return{getData:a}
+}]);
