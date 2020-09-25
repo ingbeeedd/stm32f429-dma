@@ -1,45 +1,143 @@
-15:31:14 **** Programming project STM32F429I-Discovery on chip ****
-"C:\\Ac6\\SystemWorkbench\\plugins\\fr.ac6.mcu.externaltools.openocd.win32_1.23.0.201904120827\\tools\\openocd\\bin\\openocd.exe" -f stm32.flash.1833219113331687512.cfg -s "C:\\Users\\yyj_icore\\STM32Cube\\Repository\\STM32Cube_FW_F4_V1.21.0\\Projects\\STM32F429I-Discovery\\Applications\\Display\\LTDC_Paint\\SW4STM32\\STM32F429I-Discovery" -s "C:\\Ac6\\SystemWorkbench\\plugins\\fr.ac6.mcu.debug_2.5.0.201904120827\\resources\\openocd\\st_scripts" -c "program Debug/STM32F429I-Discovery.elf verify reset " -c shutdown 
-Open On-Chip Debugger 0.10.0+dev-00021-g524e8c8 (2019-04-12-08:48)
-Licensed under GNU GPL v2
-For bug reports, read
-	http://openocd.org/doc/doxygen/bugs.html
-srst_only separate srst_nogate srst_open_drain connect_assert_srst
-Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
-adapter speed: 8000 kHz
-adapter_nsrst_delay: 100
-Info : clock speed 8000 kHz
-Info : STLINK v2.1 JTAG v34 API v2 M25 VID 0x0483 PID 0x374B
-Info : using stlink api v2
-Info : Target voltage: 2.905039
-Info : Unable to match requested speed 8000 kHz, using 4000 kHz
-Info : Stlink adapter speed set to 4000 kHz
-Info : STM32F429ZITx.cpu: hardware has 6 breakpoints, 4 watchpoints
-Info : Listening on port 3333 for gdb connections
-target halted due to debug-request, current mode: Thread 
-xPSR: 0x01000000 pc: 0x0800157c msp: 0x20030000
-configuring PLL
-Info : Unable to match requested speed 8000 kHz, using 4000 kHz
-Info : Stlink adapter speed set to 4000 kHz
-Info : Unable to match requested speed 8000 kHz, using 4000 kHz
-adapter speed: 4000 kHz
-** Programming Started **
-auto erase enabled
-Info : device id = 0x20016419
-Info : flash size = 2048kbytes
-target halted due to breakpoint, current mode: Thread 
-xPSR: 0x61000000 pc: 0x20000046 msp: 0x20030000
-wrote 131072 bytes from file Debug/STM32F429I-Discovery.elf in 3.474586s (36.839 KiB/s)
-** Programming Finished **
-** Verify Started **
-target halted due to breakpoint, current mode: Thread 
-xPSR: 0x61000000 pc: 0x2000002e msp: 0x20030000
-target halted due to breakpoint, current mode: Thread 
-xPSR: 0x61000000 pc: 0x2000002e msp: 0x20030000
-verified 84336 bytes in 0.657759s (125.212 KiB/s)
-** Verified OK **
-** Resetting Target **
-shutdown command invoked
+15:47:20 **** Build of configuration Debug for project STM32F429I-Discovery ****
+make all 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Src/main.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Example/User/main.d" -MT"Example/User/main.o" -o "Example/User/main.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Src/main.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Src/main.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Src/stm32f4xx_hal_msp.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Example/User/stm32f4xx_hal_msp.d" -MT"Example/User/stm32f4xx_hal_msp.o" -o "Example/User/stm32f4xx_hal_msp.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Src/stm32f4xx_hal_msp.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Src/stm32f4xx_hal_msp.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Src/stm32f4xx_it.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Example/User/stm32f4xx_it.d" -MT"Example/User/stm32f4xx_it.o" -o "Example/User/stm32f4xx_it.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Src/stm32f4xx_it.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Src/stm32f4xx_it.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/SW4STM32/startup_stm32f429xx.s
+Invoking: MCU GCC Assembler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-as -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -g -o "Example/SW4STM32/startup_stm32f429xx.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/SW4STM32/startup_stm32f429xx.s"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/SW4STM32/startup_stm32f429xx.s
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ex.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ex.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_i2c.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_i2c.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_i2c.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_i2c_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_i2c_ex.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_i2c_ex.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr_ex.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr_ex.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_sdram.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_sdram.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_sdram.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_spi.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_spi.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_spi.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fmc.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_ll_fmc.d" -MT"Drivers/STM32F4xx_HAL_Driver/stm32f4xx_ll_fmc.o" -o "Drivers/STM32F4xx_HAL_Driver/stm32f4xx_ll_fmc.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fmc.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fmc.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Src/system_stm32f4xx.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/CMSIS/system_stm32f4xx.d" -MT"Drivers/CMSIS/system_stm32f4xx.o" -o "Drivers/CMSIS/system_stm32f4xx.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Src/system_stm32f4xx.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Src/system_stm32f4xx.c
+ 
+Building file: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery.c
+Invoking: MCU GCC Compiler
+C:\Users\yyj_icore\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Projects\STM32F429I-Discovery\Examples\FMC\FMC_SDRAM\SW4STM32\STM32F429I-Discovery\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DUSE_HAL_DRIVER -DSTM32F429xx -DUSE_STM32F429I_DISCO -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Projects/STM32F429I-Discovery/Examples/FMC/FMC_SDRAM/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery" -I"C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/CMSIS/Include"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -Wno-unused-variable -Wno-pointer-sign -Wno-main -Wno-format -Wno-address -Wno-unused-but-set-variable -Wno-strict-aliasing -Wno-parentheses -Wno-missing-braces -MMD -MP -MF"Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery.d" -MT"Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery.o" -o "Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery.o" "C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery.c"
+Finished building: C:/Users/yyj_icore/STM32Cube/Repository/STM32Cube_FW_F4_V1.21.0/Drivers/BSP/STM32F429I-Discovery/stm32f429i_discovery.c
+ 
+Building target: STM32F429I-Discovery.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -specs=nosys.specs -specs=nano.specs -T"../STM32F429ZITx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "STM32F429I-Discovery.elf" @"objects.list"   -lm
+Finished building target: STM32F429I-Discovery.elf
+ 
+make --no-print-directory post-build
+Generating binary and Printing size information:
+arm-none-eabi-objcopy -O binary "STM32F429I-Discovery.elf" "STM32F429I-Discovery.bin"
+arm-none-eabi-size "STM32F429I-Discovery.elf"
+   text	   data	    bss	    dec	    hex	filename
+   5156	     40	   3720	   8916	   22d4	STM32F429I-Discovery.elf
+ 
 
-15:31:19 Build Finished (took 4s.897ms)
+15:47:31 Build Finished (took 11s.65ms)
 

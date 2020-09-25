@@ -1,0 +1,23 @@
+17:48:01 **** Incremental Build of configuration Debug for project 98_stm32f429_sdram_fmc ****
+make all 
+Building file: ../Src/main.c
+Invoking: MCU GCC Compiler
+D:\00_myGit\stm32f429-dma\src\98_stm32f429_sdram_fmc\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F429xx -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Inc" -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Drivers/CMSIS/Include"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
+Finished building: ../Src/main.c
+ 
+Building target: 98_stm32f429_sdram_fmc.elf
+Invoking: MCU GCC Linker
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -specs=nosys.specs -specs=nano.specs -T"../STM32F429ZITx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "98_stm32f429_sdram_fmc.elf" @"objects.list"   -lm
+Finished building target: 98_stm32f429_sdram_fmc.elf
+ 
+make --no-print-directory post-build
+Generating hex and Printing size information:
+arm-none-eabi-objcopy -O ihex "98_stm32f429_sdram_fmc.elf" "98_stm32f429_sdram_fmc.hex"
+arm-none-eabi-size "98_stm32f429_sdram_fmc.elf"
+   text	   data	    bss	    dec	    hex	filename
+  10084	     20	   4084	  14188	   376c	98_stm32f429_sdram_fmc.elf
+ 
+
+17:48:03 Build Finished (took 1s.968ms)
+

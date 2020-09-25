@@ -1,24 +1,20 @@
-09:52:56 **** Incremental Build of configuration Debug for project 08_dma_adc_sram ****
+17:48:01 **** Incremental Build of configuration Debug for project 98_stm32f429_sdram_fmc ****
 make all 
 Building file: ../Src/main.c
 Invoking: MCU GCC Compiler
-D:\00_myGit\stm32f429-dma\src\08_dma_adc_sram\Debug
-arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F429xx -I"D:/00_myGit/stm32f429-dma/src/08_dma_adc_sram/Inc" -I"D:/00_myGit/stm32f429-dma/src/08_dma_adc_sram/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/00_myGit/stm32f429-dma/src/08_dma_adc_sram/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/00_myGit/stm32f429-dma/src/08_dma_adc_sram/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/00_myGit/stm32f429-dma/src/08_dma_adc_sram/Drivers/CMSIS/Include"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
-../Src/main.c: In function 'main':
-../Src/main.c:141:11: warning: unused variable 'temp' [-Wunused-variable]
-     float temp = (((temp_sum * (3.3/(2^12)-1)) - 0.76) / 2.5) + 25.0;
-           ^~~~
+D:\00_myGit\stm32f429-dma\src\98_stm32f429_sdram_fmc\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F429xx -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Inc" -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Drivers/CMSIS/Include"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
 Finished building: ../Src/main.c
  
-Building target: 08_dma_adc_sram.elf
+Building target: 98_stm32f429_sdram_fmc.elf
 Invoking: MCU GCC Linker
-arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -specs=nosys.specs -specs=nano.specs -T"../STM32F429ZITx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "08_dma_adc_sram.elf" @"objects.list"   -lm
-Finished building target: 08_dma_adc_sram.elf
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -specs=nosys.specs -specs=nano.specs -T"../STM32F429ZITx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "98_stm32f429_sdram_fmc.elf" @"objects.list"   -lm
+Finished building target: 98_stm32f429_sdram_fmc.elf
  
 make --no-print-directory post-build
 Generating hex and Printing size information:
-arm-none-eabi-objcopy -O ihex "08_dma_adc_sram.elf" "08_dma_adc_sram.hex"
-arm-none-eabi-size "08_dma_adc_sram.elf"
+arm-none-eabi-objcopy -O ihex "98_stm32f429_sdram_fmc.elf" "98_stm32f429_sdram_fmc.hex"
+arm-none-eabi-size "98_stm32f429_sdram_fmc.elf"
    text	   data	    bss	    dec	    hex	filename
-   8644	     20	   1836	  10500	   2904	08_dma_adc_sram.elf
+  10084	     20	   4084	  14188	   376c	98_stm32f429_sdram_fmc.elf
  
