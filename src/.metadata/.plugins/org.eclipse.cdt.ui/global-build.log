@@ -1,20 +1,60 @@
-17:48:01 **** Incremental Build of configuration Debug for project 98_stm32f429_sdram_fmc ****
+16:58:55 **** Incremental Build of configuration Debug for project 97_pa0_button_test ****
 make all 
 Building file: ../Src/main.c
 Invoking: MCU GCC Compiler
-D:\00_myGit\stm32f429-dma\src\98_stm32f429_sdram_fmc\Debug
-arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F429xx -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Inc" -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/00_myGit/stm32f429-dma/src/98_stm32f429_sdram_fmc/Drivers/CMSIS/Include"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
+D:\00_myGit\stm32f429-dma\src\97_pa0_button_test\Debug
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 '-D__weak=__attribute__((weak))' '-D__packed=__attribute__((__packed__))' -DUSE_HAL_DRIVER -DSTM32F429xx -I"D:/00_myGit/stm32f429-dma/src/97_pa0_button_test/Inc" -I"D:/00_myGit/stm32f429-dma/src/97_pa0_button_test/Drivers/STM32F4xx_HAL_Driver/Inc" -I"D:/00_myGit/stm32f429-dma/src/97_pa0_button_test/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"D:/00_myGit/stm32f429-dma/src/97_pa0_button_test/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"D:/00_myGit/stm32f429-dma/src/97_pa0_button_test/Drivers/CMSIS/Include"  -Og -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"Src/main.d" -MT"Src/main.o" -o "Src/main.o" "../Src/main.c"
 Finished building: ../Src/main.c
  
-Building target: 98_stm32f429_sdram_fmc.elf
+Building target: 97_pa0_button_test.elf
 Invoking: MCU GCC Linker
-arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -specs=nosys.specs -specs=nano.specs -T"../STM32F429ZITx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "98_stm32f429_sdram_fmc.elf" @"objects.list"   -lm
-Finished building target: 98_stm32f429_sdram_fmc.elf
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -specs=nosys.specs -specs=nano.specs -T"../STM32F429ZITx_FLASH.ld" -Wl,-Map=output.map -Wl,--gc-sections -o "97_pa0_button_test.elf" @"objects.list"   -lm
+Finished building target: 97_pa0_button_test.elf
  
 make --no-print-directory post-build
 Generating hex and Printing size information:
-arm-none-eabi-objcopy -O ihex "98_stm32f429_sdram_fmc.elf" "98_stm32f429_sdram_fmc.hex"
-arm-none-eabi-size "98_stm32f429_sdram_fmc.elf"
+arm-none-eabi-objcopy -O ihex "97_pa0_button_test.elf" "97_pa0_button_test.hex"
+arm-none-eabi-size "97_pa0_button_test.elf"
    text	   data	    bss	    dec	    hex	filename
-  10084	     20	   4084	  14188	   376c	98_stm32f429_sdram_fmc.elf
+   4436	     20	   1572	   6028	   178c	97_pa0_button_test.elf
  
+16:59:01 **** Programming project 97_pa0_button_test on chip ****
+"C:\\Ac6\\SystemWorkbench\\plugins\\fr.ac6.mcu.externaltools.openocd.win32_1.23.0.201904120827\\tools\\openocd\\bin\\openocd.exe" -f stm32.flash.7532530791147014056.cfg -s "D:\\00_myGit\\stm32f429-dma\\src\\97_pa0_button_test" -s "C:\\Ac6\\SystemWorkbench\\plugins\\fr.ac6.mcu.debug_2.5.0.201904120827\\resources\\openocd\\st_scripts" -c "program Debug/97_pa0_button_test.elf verify reset " -c shutdown 
+Open On-Chip Debugger 0.10.0+dev-00021-g524e8c8 (2019-04-12-08:48)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+srst_only separate srst_nogate srst_open_drain connect_assert_srst
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 8000 kHz
+adapter_nsrst_delay: 100
+Info : clock speed 8000 kHz
+Info : STLINK v2.1 JTAG v35 API v2 M26 VID 0x0483 PID 0x374B
+Info : using stlink api v2
+Info : Target voltage: 2.869596
+Info : Unable to match requested speed 8000 kHz, using 4000 kHz
+Info : Stlink adapter speed set to 4000 kHz
+Info : STM32F429ZITx.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : Listening on port 3333 for gdb connections
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x08001060 msp: 0x20030000
+configuring PLL
+Info : Unable to match requested speed 8000 kHz, using 4000 kHz
+Info : Stlink adapter speed set to 4000 kHz
+Info : Unable to match requested speed 8000 kHz, using 4000 kHz
+adapter speed: 4000 kHz
+** Programming Started **
+auto erase enabled
+Info : device id = 0x20016419
+Info : flash size = 2048kbytes
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000046 msp: 0x20030000
+wrote 16384 bytes from file Debug/97_pa0_button_test.elf in 0.599998s (26.667 KiB/s)
+** Programming Finished **
+** Verify Started **
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x2000002e msp: 0x20030000
+verified 4456 bytes in 0.106000s (41.052 KiB/s)
+** Verified OK **
+** Resetting Target **
+shutdown command invoked

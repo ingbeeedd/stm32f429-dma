@@ -1,0 +1,2 @@
+---- dma_enable_stream Matches (1 in 1 files) ----
+main in main.c : 		dma_enable_stream(DMA2, DMA_STREAM1);

@@ -46,8 +46,7 @@ uint32_t JpegDataCnt=0;
 extern uint8_t JpegBuffer[1024*33];
 uint8_t jpg_flag=0;
 uint8_t key_flag=0;
-#define JpegBufferLen (sizeof(JpegBuffer)/sizeof(char)) //计算JpegBuffer元素总个数
-
+#define JpegBufferLen (sizeof(JpegBuffer)/sizeof(char)) //
 #define GPIO_WAKEUP_CLK    RCC_AHB1Periph_GPIOA
 #define GPIO_WAKEUP_PORT   GPIOA
 #define GPIO_WAKEUP_PIN    GPIO_Pin_0
@@ -113,22 +112,22 @@ int main(void)
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+	// no pull up
+	// GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_InitStructure.GPIO_Pin = GPIO_WAKEUP_PIN;
 	GPIO_Init(GPIO_WAKEUP_PORT, &GPIO_InitStructure);
   while (1)
   {
-	if(GPIO_ReadInputDataBit(GPIO_WAKEUP_PORT,GPIO_WAKEUP_PIN))
+		if(GPIO_ReadInputDataBit(GPIO_WAKEUP_PORT,GPIO_WAKEUP_PIN))
 		{
 		 key_flag = 1;
 	    DMA_Cmd(DMA2_Stream1, ENABLE);		
 			DCMI_Cmd(ENABLE);
 			DCMI_CaptureCmd(ENABLE);
-			//printf("key_flag =1 \r\n");
+			printf("key_flag =1 \r\n");
 			while(GPIO_ReadInputDataBit(GPIO_WAKEUP_PORT,GPIO_WAKEUP_PIN));
 		}
-		
-		
 		
 		if(jpg_flag)//&&key_flag
 		{

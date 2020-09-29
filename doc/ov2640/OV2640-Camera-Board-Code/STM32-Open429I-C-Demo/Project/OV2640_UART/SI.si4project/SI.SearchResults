@@ -1,0 +1,3 @@
+---- OV2640_DEVICE_WRITE_ADDRESS Matches (2 in 2 files) ----
+DCMI_SingleRandomWrite in SCCB.C (camera) :   I2C_Send7bitAddress(Open407V_SCCB, OV2640_DEVICE_WRITE_ADDRESS, I2C_Direction_Transmitter);
+SCCB.h (camera) line 33 : #define OV2640_DEVICE_WRITE_ADDRESS    0x60

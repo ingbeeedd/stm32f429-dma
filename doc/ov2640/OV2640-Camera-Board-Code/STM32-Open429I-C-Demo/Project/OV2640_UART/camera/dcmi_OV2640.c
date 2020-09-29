@@ -106,9 +106,11 @@ void OV2640_DCMI_Config(void)
 	
   GPIO_PinAFConfig(GPIOD, GPIO_PinSource3, GPIO_AF_DCMI);
 	
-	GPIO_PinAFConfig(GPIOI, GPIO_PinSource7, GPIO_AF_DCMI);
-  GPIO_PinAFConfig(GPIOI, GPIO_PinSource6, GPIO_AF_DCMI);
-  
+	// GPIO_PinAFConfig(GPIOI, GPIO_PinSource7, GPIO_AF_DCMI);
+  // GPIO_PinAFConfig(GPIOI, GPIO_PinSource6, GPIO_AF_DCMI);
+	
+  GPIO_PinAFConfig(GPIOE, GPIO_PinSource5, GPIO_AF_DCMI);
+  GPIO_PinAFConfig(GPIOE, GPIO_PinSource6, GPIO_AF_DCMI);
   /* DCMI GPIO configuration **************************************************/
   /* D0..D4(PH9/10/11/12/14), HSYNC(PH8) */
 //  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | 
@@ -118,9 +120,11 @@ void OV2640_DCMI_Config(void)
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP ;  
 
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 ;  
-  GPIO_Init(GPIOI, &GPIO_InitStructure);
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9| GPIO_Pin_11;  //D0 D1 D4
+  // GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 ;  // D6, D7
+  // GPIO_Init(GPIOI, &GPIO_InitStructure);
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6 ;  // D6, D7
+  GPIO_Init(GPIOE, &GPIO_InitStructure);
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9| GPIO_Pin_11;  //D0 D1 D2 D3 D4
   GPIO_Init(GPIOC, &GPIO_InitStructure);
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;  //D5
   GPIO_Init(GPIOD, &GPIO_InitStructure);
@@ -146,7 +150,7 @@ void OV2640_DCMI_Config(void)
   
   DCMI_Init(&DCMI_InitStructure);
 
-	DCMI_JPEGCmd(ENABLE);
+  DCMI_JPEGCmd(ENABLE);
       
   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
   NVIC_InitStructure.NVIC_IRQChannel = DCMI_IRQn;
