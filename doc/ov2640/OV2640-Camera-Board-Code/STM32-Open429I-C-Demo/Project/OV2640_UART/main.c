@@ -44,13 +44,14 @@ void TimingDelay_Decrement(void);
 static __IO uint32_t TimingDelay;
 uint32_t JpegDataCnt=0;
 extern uint8_t JpegBuffer[1024*33];
+extern uint8_t ButtonPressed;
 uint8_t jpg_flag=0;
 uint8_t key_flag=0;
 #define JpegBufferLen (sizeof(JpegBuffer)/sizeof(char)) //
 #define GPIO_WAKEUP_CLK    RCC_AHB1Periph_GPIOA
 #define GPIO_WAKEUP_PORT   GPIOA
 #define GPIO_WAKEUP_PIN    GPIO_Pin_0
-
+#define GPIO_MODE_IT_RISING 0x10110000
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -101,22 +102,23 @@ int main(void)
 		}			
 	}	
 	
-		OV2640_JPEGConfig(JPEG_320x240);
-		OV2640_BrightnessConfig(0x20);	
-		OV2640_AutoExposure(2);	
-		Delay(10);
+	OV2640_JPEGConfig(JPEG_320x240);
+	OV2640_BrightnessConfig(0x20);	
+	OV2640_AutoExposure(2);	
+	Delay(10);
 
-			
-	  Delay(10);		
+	Delay(10);		
 	RCC_APB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_Mode = GPIO_MODE_IT_RISING;
+	// GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+	// GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	// no pull up
 	// GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_InitStructure.GPIO_Pin = GPIO_WAKEUP_PIN;
 	GPIO_Init(GPIO_WAKEUP_PORT, &GPIO_InitStructure);
+
   while (1)
   {
 		if(GPIO_ReadInputDataBit(GPIO_WAKEUP_PORT,GPIO_WAKEUP_PIN))
@@ -136,7 +138,7 @@ int main(void)
 			DMA_Cmd(DMA2_Stream1, DISABLE);
 			if( (JpegBuffer[0]==0xFF)&&(JpegBuffer[1]==0xD8) )
 			{
-					while ( !( (JpegBuffer[JpegBufferLen - JpegDataCnt-2]==0xFF) && (JpegBuffer[JpegBufferLen-JpegDataCnt-1]==0xD9) ) ) //从数据包的尾开始检索  
+				while ( !( (JpegBuffer[JpegBufferLen - JpegDataCnt-2]==0xFF) && (JpegBuffer[JpegBufferLen-JpegDataCnt-1]==0xD9) ))   
 				{		
 					JpegDataCnt++;
 				}				

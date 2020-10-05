@@ -1,3 +1,6 @@
----- OV2640_DEVICE_WRITE_ADDRESS Matches (2 in 2 files) ----
-DCMI_SingleRandomWrite in SCCB.C (camera) :   I2C_Send7bitAddress(Open407V_SCCB, OV2640_DEVICE_WRITE_ADDRESS, I2C_Direction_Transmitter);
-SCCB.h (camera) line 33 : #define OV2640_DEVICE_WRITE_ADDRESS    0x60
+---- jpg_flag Matches (5 in 2 files) ----
+main.c line 47 : uint8_t jpg_flag=0;
+main in main.c : 		if(jpg_flag)//&&key_flag
+main in main.c : 			jpg_flag = 0;
+stm32f4xx_it.c line 150 : extern uint8_t jpg_flag;
+DCMI_IRQHandler in stm32f4xx_it.c : 		jpg_flag = 1;

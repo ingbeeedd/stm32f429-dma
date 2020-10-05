@@ -157,6 +157,12 @@ void DCMI_IRQHandler(void)
 		jpg_flag = 1;
 	}	
 }
+
+uint8_t ButtonPressed;
+void EXTI0_IRQHandler(void)
+{
+	ButtonPressed = 1;
+}
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
